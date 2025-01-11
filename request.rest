@@ -1,0 +1,21 @@
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "My First Post",
+  "content": "This is the content of the post",
+  "sender": "User123"
+}
+
+### קבלת כל הפוסטים
+GET http://localhost:3000/posts
+
+### קבלת פוסט לפי ID
+GET http://localhost:3000/posts/67829cac6a1ecdac47eeb654
+
+### מחיקת פוסט לפי ID
+DELETE http://localhost:3000/posts/67829c396a1ecdac47eeb64c
+
+###
+GET http://localhost:3000/posts?sender=User123
+

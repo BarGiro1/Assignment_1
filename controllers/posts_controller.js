@@ -1,4 +1,4 @@
-const Post = require("../models/post");
+const PostModel = require("../models/post");
 
 const getAllPosts = async (req, res) => {
     const senderFilter = req.query.sender; 

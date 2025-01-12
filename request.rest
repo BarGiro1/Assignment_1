@@ -19,3 +19,30 @@ DELETE http://localhost:3000/posts/67829c396a1ecdac47eeb64c
 ###
 GET http://localhost:3000/posts?sender=User123
 
+
+### הוספת תגובה לפוסט
+POST http://localhost:3000/comment/posts/1/comment
+Content-Type: application/json
+
+{
+  "id": "101",
+  "text": "This is a comment.",
+  "userId": "456"
+}
+
+### קבלת כל התגובות לפוסט מסויים
+GET http://localhost:3000/comment/posts/1/comments
+
+### עידכון תגובה
+PUT http://localhost:3000/comment/101
+Content-Type: application/json
+
+{
+  "text": "Updated comment text."
+}
+
+### מחיקת תגובה
+DELETE http://localhost:3000/comment/101
+
+### קבלת כל התגובות
+GET http://localhost:3000/comment

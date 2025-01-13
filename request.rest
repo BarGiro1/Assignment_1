@@ -11,30 +11,32 @@ Content-Type: application/json
 GET http://localhost:3000/posts
 
 ### קבלת פוסט לפי ID
-GET http://localhost:3000/posts/67829cac6a1ecdac47eeb654
+GET http://localhost:3000/posts/678569220094f98801a77d8a
 
 ### מחיקת פוסט לפי ID
-DELETE http://localhost:3000/posts/67829c396a1ecdac47eeb64c
+DELETE http://localhost:3000/posts/678569220094f98801a77d8a
 
 ###
 GET http://localhost:3000/posts?sender=User123
 
 
 ### הוספת תגובה לפוסט
-POST http://localhost:3000/comment/posts/1/comment
+POST http://localhost:3000/comments/posts/678569220094f98801a77d8a
 Content-Type: application/json
 
 {
-  "id": "101",
   "text": "This is a comment.",
   "userId": "456"
 }
 
+### קבלת כל התגובות
+GET http://localhost:3000/comments
+
 ### קבלת כל התגובות לפוסט מסויים
-GET http://localhost:3000/comment/posts/1/comments
+GET http://localhost:3000/comments?post=678569220094f98801a77d8a
 
 ### עידכון תגובה
-PUT http://localhost:3000/comment/101
+PUT http://localhost:3000/comments/67856b0cd6b866a4fd818e25
 Content-Type: application/json
 
 {
@@ -42,7 +44,5 @@ Content-Type: application/json
 }
 
 ### מחיקת תגובה
-DELETE http://localhost:3000/comment/101
+DELETE http://localhost:3000/comments/67856b0cd6b866a4fd818e25
 
-### קבלת כל התגובות
-GET http://localhost:3000/comment

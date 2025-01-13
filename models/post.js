@@ -11,10 +11,14 @@ const postSchema = new mongoose.Schema({
  },
   sender: { type: String
     , required: true 
-},
+  },
   createdAt: { type: Date,
      default: Date.now
-     },
+  },
+  comments: {
+    type: [mongoose.Schema.Types.ObjectId],
+    default: []
+  }
 });
 
 module.exports = mongoose.model("Post", postSchema);

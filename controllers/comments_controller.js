@@ -1,9 +1,10 @@
 const Comment = require("../models/comment");
+const post = require("../models/post");
 const Post = require("../models/post");
 
 exports.addComment = async (req, res) => {
   const { postId } = req.params;
-  const { id, text, userId } = req.body;
+  const { text, userId } = req.body;
 
   try {
     const post = await Post.findById(postId);
@@ -11,7 +12,7 @@ exports.addComment = async (req, res) => {
       return res.status(404).json({ message: "Post not found" });
     }
 
-    const newComment = new Comment({ id, postId, text, userId });
+    const newComment = new Comment({ postId, text, userId });
     await newComment.save();
 
     post.comments.push(newComment._id);
@@ -48,7 +49,7 @@ exports.updateComment = async (req, res) => {
 
   try {
     const updatedComment = await Comment.findByIdAndUpdate(
-      id,
+      { _id: id },
       { text },
       { new: true }
     );
@@ -87,12 +88,17 @@ exports.deleteComment = async (req, res) => {
 };
 
 exports.getAllComments = async (req, res) => {
+  const postId = req.query.post; 
   try {
-    const comments = await Comment.find();
-    res.json(comments);
+    if (postId) {
+      const comments = await Comment.find({ postId: postId });
+      res.status(200).json(comments);
+    } else {
+      const comments = await Comment.find();
+      res.status(200).json(comments);
+    }
   } catch (error) {
-    res
-      .status(500)
+    res.status(404)
       .json({ message: "Error retrieving comments", error: error.message });
   }
 };

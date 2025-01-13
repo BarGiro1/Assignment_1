@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const commentSchema = new mongoose.Schema({
-  id: { type: String, required: true },
   postId: { type: mongoose.Schema.Types.ObjectId, ref: "Post", required: true },
   text: { type: String, required: true },
   userId: { type: String, required: true },
